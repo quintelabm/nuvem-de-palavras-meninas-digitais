@@ -55,7 +55,8 @@ md_mask = np.array(Image.open("teste.png"))
 
 # Create and generate a word cloud image:
 wordcloud = WordCloud(mask=md_mask,contour_width=1,                    
-                      contour_color='black',background_color="white",max_font_size=50, max_words=1000).generate(text)
+                      contour_color='black',background_color="white",
+                      max_font_size=50, max_words=1000,colormap='Reds').generate(text)
 
 # Display the generated image:
 plt.imshow(wordcloud, interpolation='bilinear')
