@@ -10,7 +10,8 @@ import cv2
 
 import matplotlib.pyplot as plt
 
-text = 'Maria Luiza Anna Julia Barbara Liamara Priscila Thais Cecilia Josiane Ada UFJF Grace Hopper Sophie Wilson Mary Kenneth Keller Carol Shaw Anita Borg Margaret Hamilton'
+# string com todas as palavras
+text = 'Meninas Digitais Maria Luiza Anna Julia Barbara Liamara Priscila Thais Cecilia Josiane Ada UFJF Grace Hopper Sophie Wilson Mary Kenneth Keller Carol Shaw Anita Borg Margaret Hamilton'
 
 #md_mask = np.array(Image.open("img/logo_bw.png"))
 img = cv2.imread('img/logo_.png')
@@ -34,17 +35,18 @@ plt.savefig("teste.png")
 #    plt.imshow(imgs[i])
 #plt.savefig("teste.png")
 
+# usa o arquivo gerado 
 md_mask = np.array(Image.open("teste.png"))
 # print(md_mask)
 
-def transform_format(val):
-    if val == 0:
-        return 255
-    else:
-        return 1
+#def transform_format(val):
+#    if val == 0:
+#        return 255
+#    else:
+#        return 1
     
 # Transform your mask into a new one that will work with the function:
-transformed_mask = np.ndarray((md_mask.shape[0],md_mask.shape[1]), np.int32)
+#transformed_mask = np.ndarray((md_mask.shape[0],md_mask.shape[1]), np.int32)
 #print(transformed_mask)
 #for i in range(len(md_mask)):
  #   transformed_mask[i] = list(map(transform_format, md_mask[i]))
