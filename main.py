@@ -6,13 +6,36 @@ import pandas as pd
 from os import path
 from PIL import Image
 from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
+import cv2
 
 import matplotlib.pyplot as plt
 
-text = 'Maria Luiza Anna Julia Barbara Liamara Priscila Thais Cecilia Josiane Ada '
+text = 'Maria Luiza Anna Julia Barbara Liamara Priscila Thais Cecilia Josiane Ada UFJF Grace Hopper Sophie Wilson Mary Kenneth Keller Carol Shaw Anita Borg Margaret Hamilton'
 
-md_mask = np.array(Image.open("img/logo_bw.png"))
-#print(md_mask)
+#md_mask = np.array(Image.open("img/logo_bw.png"))
+img = cv2.imread('img/logo.png')
+img = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
+gray = cv2.cvtColor(img.copy(),cv2.COLOR_BGR2GRAY)
+ret, thresh = cv2.threshold(gray, 200, 255, 0)
+copy_img = img.copy()
+contours, hierarchy = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
+cv2.drawContours(copy_img,contours,-1,(0,0,255),2)
+plt.imshow(copy_img)
+plt.xticks([])
+plt.yticks([])
+plt.savefig("teste.png")
+#titles = ['original','contours']
+#imgs = [img, copy_img]
+#for i in range (2):
+#    plt.subplot(1,2,i+1)
+#    plt.xticks([])
+#    plt.yticks([])
+#    plt.title(titles[i])
+#    plt.imshow(imgs[i])
+#plt.savefig("teste.png")
+
+md_mask = np.array(Image.open("teste.png"))
+# print(md_mask)
 
 def transform_format(val):
     if val == 0:
@@ -23,14 +46,14 @@ def transform_format(val):
 # Transform your mask into a new one that will work with the function:
 transformed_mask = np.ndarray((md_mask.shape[0],md_mask.shape[1]), np.int32)
 #print(transformed_mask)
-for i in range(len(md_mask)):
-    transformed_mask[i] = list(map(transform_format, transformed_mask[i]))
+#for i in range(len(md_mask)):
+ #   transformed_mask[i] = list(map(transform_format, md_mask[i]))
 
 #print(transformed_mask)
 
 # Create and generate a word cloud image:
 wordcloud = WordCloud(mask=transformed_mask,contour_width=3,                    
-                      contour_color='firebrick',background_color="white",max_font_size=50, max_words=1000).generate(text)
+                      contour_color='black',background_color="white",max_font_size=20, max_words=1000).generate(text)
 
 # Display the generated image:
 plt.imshow(wordcloud, interpolation='bilinear')
