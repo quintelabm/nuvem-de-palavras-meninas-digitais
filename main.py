@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 text = 'Maria Luiza Anna Julia Barbara Liamara Priscila Thais Cecilia Josiane Ada UFJF Grace Hopper Sophie Wilson Mary Kenneth Keller Carol Shaw Anita Borg Margaret Hamilton'
 
 #md_mask = np.array(Image.open("img/logo_bw.png"))
-img = cv2.imread('img/logo.png')
+img = cv2.imread('img/logo_.png')
 img = cv2.cvtColor(img,cv2.COLOR_BGR2RGB)
 gray = cv2.cvtColor(img.copy(),cv2.COLOR_BGR2GRAY)
 ret, thresh = cv2.threshold(gray, 200, 255, 0)
@@ -52,8 +52,8 @@ transformed_mask = np.ndarray((md_mask.shape[0],md_mask.shape[1]), np.int32)
 #print(transformed_mask)
 
 # Create and generate a word cloud image:
-wordcloud = WordCloud(mask=transformed_mask,contour_width=3,                    
-                      contour_color='black',background_color="white",max_font_size=20, max_words=1000).generate(text)
+wordcloud = WordCloud(mask=md_mask,contour_width=1,                    
+                      contour_color='black',background_color="white",max_font_size=50, max_words=1000).generate(text)
 
 # Display the generated image:
 plt.imshow(wordcloud, interpolation='bilinear')
