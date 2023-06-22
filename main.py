@@ -11,7 +11,29 @@ import cv2
 import matplotlib.pyplot as plt
 
 # string com todas as palavras
-text = 'Meninas Digitais Maria Luiza Anna Julia Barbara Liamara Priscila Thais Cecilia Josiane Ada UFJF Grace Hopper Sophie Wilson Mary Kenneth Keller Carol Shaw Anita Borg Margaret Hamilton'
+text = 'MeninasDigitais UFJF MeninasDigitais UFJF MeninasDigitais UFJF MeninasDigitais UFJF Ada Lovelace Sophie Wilson Barbara Liamara Adele \
+    Goldberg Anita Borg Annie Easley Carol Shaw Cecilia R. Aragon Dilma Menezes \
+    Elizabeth Feinler FeiFei Li Frances Allen Gabriela Ochoa Gracie \
+    Hopper Heng Ji Henriette Avram Ida Rhodes Jean Sammet Jeannette \
+    Wing Jetty Kleijn Joan Clarke Joy Buolamwini Juliana Freire Katherine \
+    Johnson Kathleen Booth Lenore Blum Linnyer Beatrys Margaret Hamilton Maria \
+    Volpe Mary Wilkes Kenneth Keller Radia Perlman Steve Shirley \
+    Tawanna Dillahunt Timnit Gebru Valéria de Paiva Wei Wang Yanxi Liu Hedy \
+    Lamarr Leanne Pittsford Souza Rika Ciminieri Lynn Conway Danielle \
+    Bunten Berry Angelica Ross Karin Breitman Sílvia Amélia Bim Karen da Silva \
+    Figueiredo Medeiros Ribeiro Luciana Bolan Frigo Luísa Cecília Thaís Anna \
+    Júlia Isadora Josiane Priscila Ada Lovelace Sophie Wilson Barbara Liamara \
+    Adele Goldberg Anita Borg Easley Carol Shaw Cecilia R. Aragon Dilma Menezes \
+    Elizabeth Feinler Fei-Fei Li Frances Gabriela Ochoa Gracie Hopper Heng Ji \
+    Henriette Avram Ida Rhodes Jean Sammet Jeannette Wing Jetty Kleijn Joan Clarke \
+    Joy Buolamwini Juliana Freire Katherine Johnson Kathleen Booth Lenore Blum \
+    Linnyer Beatrys Margaret Hamilton Volpe Wilkes Kenneth Keller Radia Perlman \
+    Steve Shirley Tawanna Dillahunt Timnit Gebru Valéria de Paiva Wei Wang Yanxi \
+    Liu Hedy Lamarr Leanne Pittsford Annie Souza Rika Ciminieri Lynn Conway \
+    Danielle Bunten Berry Angelica Ross Karin Breitman Sílvia Amélia Bim Karen \
+    da Silva Figueiredo Medeiros Ribeiro Luciana Bolan Frigo Luísa Cecília \
+    Thaís Anna Júlia Isadora Josiane Priscila Nina daHora Mel Bel Ale Alessandreia \
+    Regina Fernanda Lorenza Anna Julia Maria Isa '
 
 #md_mask = np.array(Image.open("img/logo_bw.png"))
 img = cv2.imread('img/logo_.png')
@@ -24,7 +46,7 @@ cv2.drawContours(copy_img,contours,-1,(0,0,255),2)
 plt.imshow(copy_img)
 plt.xticks([])
 plt.yticks([])
-plt.savefig("teste.png")
+plt.savefig("teste.png", dpi=600)
 #titles = ['original','contours']
 #imgs = [img, copy_img]
 #for i in range (2):
@@ -54,11 +76,11 @@ md_mask = np.array(Image.open("teste.png"))
 #print(transformed_mask)
 
 # Create and generate a word cloud image:
-wordcloud = WordCloud(mask=md_mask,contour_width=1,                    
-                      contour_color='black',background_color="white",
-                      max_font_size=50, max_words=1000,colormap='Reds').generate(text)
+wordcloud = WordCloud(mask=md_mask,contour_width=2,                    
+                      contour_color='darkred',background_color="black",
+                      max_font_size=200, max_words=1000,colormap='Reds').generate(text)
 
 # Display the generated image:
 plt.imshow(wordcloud, interpolation='bilinear')
 plt.axis("off")
-plt.savefig("wordcount.png")
+plt.savefig("wordcount.png", dpi=600,transparent=True)
